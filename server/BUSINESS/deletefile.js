@@ -30,6 +30,6 @@ const deletesharedfile= await fileshared.deleteMany({fileId:finder._id});
     }
 
 
-
+//popo
 }
 module.exports = deletefile
