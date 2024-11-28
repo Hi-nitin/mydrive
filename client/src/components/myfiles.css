@@ -1,0 +1,21 @@
+/* MyFiles.module.css */
+.deleteButton {
+    background-color: #e57373; /* Light red background */
+    color: white; /* White text */
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    padding: 5px 10px; /* Adequate padding */
+    font-size: 14px; /* Slightly smaller font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .deleteButton:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+    transform: scale(1.05); /* Slight zoom effect */
+  }
+  
+  .deleteButton:focus {
+    outline: 2px solid #ff4081; /* Highlight outline for accessibility */
+  }
+  
