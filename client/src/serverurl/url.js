@@ -1,4 +1,4 @@
 
-    const myurl='http://localhost:7777';
+    const myurl='https://mydrive-server.vercel.app/';
 
 export default myurl
