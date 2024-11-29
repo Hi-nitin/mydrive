@@ -27,7 +27,7 @@ setLD({
 const handlelogin=async(p)=>{
     p.preventDefault();
 
-const response=await postapi(serverurl+'/login',logindetail);
+const response=await postapi('https://mydrive-server.vercel.app/login',logindetail);
 
 if (response.msg === 'login') {
   Cookies.set('token', response.token, { expires: 1 / 24 }); 
