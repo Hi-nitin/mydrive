@@ -5,6 +5,8 @@ import { useState } from 'react';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './navbar'
+import myurl from '../serverurl/url'
+const serverurl=myurl;
 
 
 function login() {
@@ -25,7 +27,7 @@ setLD({
 const handlelogin=async(p)=>{
     p.preventDefault();
 
-const response=await postapi('http://localhost:7777/login',logindetail);
+const response=await postapi(serverurl+'/login',logindetail);
 
 if (response.msg === 'login') {
   Cookies.set('token', response.token, { expires: 1 / 24 }); 

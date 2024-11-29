@@ -1,8 +1,12 @@
 import { getapi } from "./getpost";
+import myurl from '../serverurl/url'
+const serverurl=myurl;
 
 const tokenchecker=async()=>{
 
-    const tokendata= await getapi('http://localhost:7777/tokenchecker')
+   
+    
+    const tokendata= await getapi(serverurl+'/tokenchecker')
 const result= await tokendata;
 return result;
 

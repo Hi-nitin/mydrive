@@ -1,9 +1,10 @@
 const { Server } = require('socket.io');
+const urii=require('./url')
 
 const Mysocket = (server) => {
     const io = new Server(server, {
         cors: {
-            origin: 'http://localhost:5173',
+            origin: urii,
             methods: ['get', 'post']
         }
     });

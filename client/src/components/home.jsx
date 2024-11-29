@@ -3,7 +3,8 @@ import Navbar from "./navbar";
 import { useEffect, useState } from "react";
 import tokenchecker from "../api/checktoken";
 import { useNavigate } from "react-router-dom";
-
+import myurl from '../serverurl/url'
+const serverurl=myurl;
 const home = () => {
     const [loading, setloading] = useState();
     const navigate = useNavigate();

@@ -8,19 +8,21 @@ const cors = require('cors');
 const path = require('path');
 const mysocket=require('./BUSINESS/socket')
 const server = createServer(app);
-
+const urii=require('./BUSINESS/url')
 
 
 app.use('/humpydumpy', express.static(path.join(__dirname, 'public', 'humpydumpy')));
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: urii,
     credentials: true
 }));
 app.use(cookieParser())
 
 const mongoose = require('mongoose');
-const uri = 'mongodb://localhost:27017/cloud';
+// const uri = 'mongodb://localhost:27017/cloud';
+
+const uri='mongodb+srv://hiamsolo:passwordshouldbestrong@cluster0.ar0v8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 mongoose.connect(uri)
     .then(() => {
         console.log('Successfully connected to MongoDB');

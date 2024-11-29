@@ -10,6 +10,10 @@ import tokenchecker from '../api/checktoken';
 import { useNavigate } from 'react-router-dom';
 
 import { postapi2 } from '../api/getpost'
+
+import myurl from '../serverurl/url'
+const serverurl=myurl;
+
 const FileUpload = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -55,7 +59,7 @@ const FileUpload = () => {
         formData.append('kerafiles', file[i]);
       }
 
-      const response = await postapi2('http://localhost:7777/fileupload', formData);
+      const response = await postapi2(serverurl+'/fileupload', formData);
       console.log(response);
 
       if (response.succcess) { setupload(false); toast("file uploaded"); }

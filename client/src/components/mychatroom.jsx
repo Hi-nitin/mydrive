@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import Navbar from "./navbar2";
 import { getapi } from "../api/getpost";
 import { io } from 'socket.io-client';
+import myurl from '../serverurl/url'
+const serverurl=myurl;
 
-const socket = io.connect('http://localhost:7777');
+const socket = io.connect(serverurl);
 
 const Chatroom = () => {
     const [message, setMessage] = useState('');
@@ -30,7 +32,7 @@ const Chatroom = () => {
     // Fetch users
     useEffect(() => {
         const fetchUsers = async () => {
-            const response = await getapi('http://localhost:7777/fetchUsers');
+            const response = await getapi(serverurl+'/fetchUsers');
             if (response.msg === 'error showing friends') {
                 setError(response.msg);
             } else {

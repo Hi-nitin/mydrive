@@ -9,6 +9,8 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import myurl from '../serverurl/url'
+const serverurl=myurl;
 
 const MyFiles = () => {
   const [loading, setLoading] = useState(false);
@@ -39,7 +41,7 @@ const MyFiles = () => {
   }, []);
 
   const fetchFiles = async () => {
-    const response = await getapi('http://localhost:7777/myfiles2');
+    const response = await getapi(serverurl+'/myfiles2');
     console.log(response);
     
     setFiles(response);
@@ -50,11 +52,11 @@ const MyFiles = () => {
   }, [loading]);
 
   const handleLook = (id) => {
-    window.location.href = `http://localhost:7777/humpydumpy/${id}`; // Adjust your path accordingly
+    window.location.href = `${serverurl}/humpydumpy/${id}`; // Adjust your path accordingly
   };
 
   const handleDelete = async (deleteId) => {
-    const response = await deleteapi('http://localhost:7777/deletefile', { deleteid: deleteId });
+    const response = await deleteapi(serverurl+'/deletefile', { deleteid: deleteId });
     if (response.msg === 'file deleted') {
       fetchFiles();
     } else {
@@ -67,7 +69,7 @@ const MyFiles = () => {
     setCurrentFile(file);
     setShowShareModal(true);
     setsharefilename(file.fileId)
-    const response = await getapi('http://localhost:7777/fetchUsers');
+    const response = await getapi(serverurl+'/fetchUsers');
     if (response.msg == 'error showing friends') {
       seterror(response.msg)
     } else {
@@ -92,7 +94,7 @@ const MyFiles = () => {
   const handleselectfriend = async (friendId) => {
     //alert(sharefilename+'  '+friendId)
     const myid = sessionStorage.getItem('id');
-    const response = await postapi('http://localhost:7777/filesharing', { sharedTo: friendId, filesharedId: sharefileid, sharedBy: myid })
+    const response = await postapi(serverurl+'/filesharing', { sharedTo: friendId, filesharedId: sharefileid, sharedBy: myid })
     console.log(response);
 if(response.msg=='shared'){
   toast("File has been shared successfully");

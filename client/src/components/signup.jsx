@@ -7,6 +7,8 @@ import Row from 'react-bootstrap/Row';
 import signupMap from '../maping/signup'
 import { postapi, getapi } from '../api/getpost';
 import Navbar from './navbar'
+import myurl from '../serverurl/url'
+const serverurl=myurl;
 function FormExample() {
   const [formData, setfd] = useState({
     firstname: '',
@@ -30,7 +32,7 @@ function FormExample() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const Apirequest = postapi('http://localhost:7777/signup', formData);
+    const Apirequest = postapi(serverurl+'/signup', formData);
     const Apiresponse = await Apirequest;
     console.log(Apiresponse);
 
