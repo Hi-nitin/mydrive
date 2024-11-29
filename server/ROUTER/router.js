@@ -25,5 +25,8 @@ router.get('/fetchusers',fetchusers)
 router.post('/filesharing',filesharing)
 router.get('/myfiles2',myfiles2)
 
+router.get('/', (req, res) => {
+  res.send('Hello');
+});
 
 module.exports=router
