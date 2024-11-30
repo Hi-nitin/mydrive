@@ -6,22 +6,26 @@ const cookieParser = require('cookie-parser');
 const { createServer } = require('node:http');
 const cors = require('cors');
 const path = require('path');
-const mysocket=require('./BUSINESS/socket')
+const mysocket = require('./BUSINESS/socket');
 const server = createServer(app);
-const urii=require('./BUSINESS/url')
+const mongoose = require('mongoose');
 
-
+// Static file serving
 app.use('/humpydumpy', express.static(path.join(__dirname, 'public', 'humpydumpy')));
 
+// CORS middleware (allow requests only from your frontend)
 app.use(cors({
-    credentials: true
+    origin: 'https://mydrive-ruby.vercel.app', // Replace with your frontend URL
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type'],
+    credentials: true // Allow credentials like cookies
 }));
-app.use(cookieParser())
 
-const mongoose = require('mongoose');
-// const uri = 'mongodb://localhost:27017/cloud';
+// Cookie parser middleware
+app.use(cookieParser());
 
-const uri='mongodb+srv://hiamsolo:passwordshouldbestrong@cluster0.ar0v8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+// MongoDB connection setup
+const uri = 'mongodb+srv://hiamsolo:passwordshouldbestrong@cluster0.ar0v8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 mongoose.connect(uri)
     .then(() => {
         console.log('Successfully connected to MongoDB');
@@ -29,6 +33,7 @@ mongoose.connect(uri)
     .catch(err => {
         console.error('Error connecting to MongoDB', err);
     });
+
 mongoose.connection.on('connected', () => {
     console.log('Mongoose connected to DB');
 });
@@ -41,12 +46,17 @@ mongoose.connection.on('disconnected', () => {
     console.log('Mongoose disconnected');
 });
 
+// Parse incoming JSON requests
+app.use(express.json());
 
-app.use(express.json())
+// Socket.IO integration
+mysocket(server);
 
-mysocket(server)
-app.use('/', router)
+// Set up routes
+app.use('/', router);
 
+// Start the server
 server.listen(port, () => {
-    console.log('SERVER STARTED')
-})
+    console.log('Server started on port', port);
+});
+
