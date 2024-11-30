@@ -3,9 +3,11 @@ const urii=require('./url')
 
 const Mysocket = (server) => {
     const io = new Server(server, {
-   cors: {
-    origin: 'https://mydrive-ruby.vercel.app',
-    methods: ['GET', 'POST'],
+ cors: {
+    origin: "https://mydrive-ruby.vercel.app",  // The allowed origin (your frontend URL)
+    methods: ["GET", "POST"],  // Allowed HTTP methods
+    allowedHeaders: ["Content-Type"],  // Allowed headers (optional)
+    credentials: true,  // Allow cookies and other credentials (optional)
   }
     });
 
