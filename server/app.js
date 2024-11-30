@@ -14,9 +14,6 @@ const urii=require('./BUSINESS/url')
 app.use('/humpydumpy', express.static(path.join(__dirname, 'public', 'humpydumpy')));
 
 app.use(cors({
-    origin: urii,
-    methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 }));
 app.use(cookieParser())
