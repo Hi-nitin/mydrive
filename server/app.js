@@ -16,8 +16,6 @@ app.use('/humpydumpy', express.static(path.join(__dirname, 'public', 'humpydumpy
 // CORS middleware (allow requests only from your frontend)
 app.use(cors({
     origin: 'https://mydrive-ruby.vercel.app', // Replace with your frontend URL
-    methods: ['GET', 'POST', 'OPTIONS'],
-    allowedHeaders: ['Content-Type'],
     credentials: true // Allow credentials like cookies
 }));
 
